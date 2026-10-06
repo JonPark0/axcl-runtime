@@ -9,7 +9,7 @@ DEBUG_OUT_PATH  := $(MOD_TARGET_PATH)/debug_ko
 
 EXT_FLAG        ?=
 EXTRA_CFLAGS    += -Wno-error=date-time -Wno-date-time
-KCFLAGS         += -DIS_THIRD_PARTY_PLATFORM
+KCFLAGS         += -DIS_THIRD_PARTY_PLATFORM -Wno-error=date-time -Wno-date-time
 ccflags-y       += -DAXCL_BUILD_VERSION=\"$(SDK_VERSION)\"
 ccflags-y       += -DCOMPILER_USERNAME=$(COMPILER_USERNAME_STR)
 
