@@ -23,6 +23,7 @@
 #include <linux/ioport.h>
 #include <linux/interrupt.h>
 #include <linux/pci.h>
+#include <linux/version.h>
 #include <linux/wait.h>
 #include <linux/string.h>
 #include <linux/slab.h>
@@ -217,7 +218,12 @@ static int axera_pcie_set_rebar(struct pci_dev *pdev)
 	}
 
 	/* Change bar4 size to 1M */
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 0, 0)
+	/* 7.0+ takes the encoded rebar size index and an exclude_bars mask */
+	ret = pci_resize_resource(pdev, BAR_4, pci_rebar_bytes_to_size(SZ_1M), 0);
+#else
 	ret = pci_resize_resource(pdev, BAR_4, SZ_1M);
+#endif
 	if (ret == -ENOSPC)
 		printk("Not enough PCI address space for a large BAR.\n");
 	else if (ret && ret != -ENOTSUPP)
