@@ -1,12 +1,14 @@
-**English** | [中文](README_zh.md) | [한국어](README_ko.md)
+[English](README.md) | **中文** | [한국어](README_ko.md)
 
-### Sample for device DMA
-1. memcpy between two device memories by AXCL_DMA_MemCopy
-2. memset device memory to 0xAB by AXCL_DMA_MemCopy
-3. checksum by AXCL_DMA_CheckSum
-4. crop 1/4 image from (0, 0) by AXCL_DMA_MemCopyXD (AX_DMADIM_2D)
+> 本文译自英文[原文](README.md)，如有出入以原文为准。
 
-### Usage
+### 设备 DMA 示例
+1. 通过 AXCL_DMA_MemCopy 在两块设备内存之间执行 memcpy
+2. 通过 AXCL_DMA_MemCopy 将设备内存 memset 为 0xAB
+3. 通过 AXCL_DMA_CheckSum 计算校验和
+4. 通过 AXCL_DMA_MemCopyXD (AX_DMADIM_2D) 从 (0, 0) 处裁剪 1/4 图像
+
+### 用法
 ```bash
 usage: ./axcl_sample_dmadim --image=string --width=unsigned int --height=unsigned int [options] ...
 options:
@@ -18,7 +20,7 @@ options:
   -?, --help      print this message
 ```
 
-### Example
+### 示例
 ```bash
 $ ./axcl_sample_dmadim -i 1920x1080.nv12.yuv -w 1920 -h 1080 -d 0
 [INFO ][                            main][  30]: ============== V2.26.1 sample started Feb 13 2025 11:10:23 ==============

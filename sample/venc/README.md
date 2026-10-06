@@ -1,3 +1,5 @@
+**English** | [中文](README_zh.md) | [한국어](README_ko.md)
+
 ### Description
 ​	This module is part of the SDK package and provides sample code for the video encoding unit (H.264, H.265, JPEG, MJPEG). It aims to help customers quickly understand and master the usage of video encoding-related interfaces. The code demonstrates the following processes: initialization of the video encoding module, sending frame data via an encoding Send thread, obtaining and saving encoded stream data via an encoding Get thread, and deinitialization of the video encoding module.
 

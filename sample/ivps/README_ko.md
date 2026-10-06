@@ -1,14 +1,16 @@
-**English** | [中文](README_zh.md) | [한국어](README_ko.md)
+[English](README.md) | [中文](README_zh.md) | **한국어**
 
-### Description
+> 영어 [원문](README.md)을 번역한 문서입니다. 내용이 다르면 원문을 기준으로 합니다.
 
-​	The IVPS(Image Video Process System) unit provided in the Axera SDK package is a video image processing subsystem that provides functions such as cropping, scaling, rotation, streaming, CSC, OSD, mosaic, quadrilateral, etc.
+### 설명
 
-​	This module is an example code of IVPS unit, which is convenient for users to quickly understand and master the use of IVPS related interfaces.
+​	Axera SDK 패키지에서 제공하는 IVPS(Image Video Process System) 유닛은 크롭, 스케일링, 회전, 스트리밍, CSC, OSD, 모자이크, 사각형 등의 기능을 제공하는 비디오 이미지 처리 서브시스템입니다.
 
-​	`axcl_sample_ivps` bin is located in the directory of /opt/bin, and can be used for IVPS interface examples.
+​	이 모듈은 IVPS 유닛의 예제 코드로, 사용자가 IVPS 관련 인터페이스의 사용법을 빠르게 이해하고 익힐 수 있도록 돕습니다.
 
-### Usage
+​	`axcl_sample_ivps` 바이너리는 /opt/bin 디렉터리에 있으며, IVPS 인터페이스 예제로 사용할 수 있습니다.
+
+### 사용법
 ``` bash
 Usage: /opt/bin/axcl_sample_ivps
         -d             (required) : device index from 0 to connected device num - 1
@@ -81,40 +83,40 @@ Example1:
 ```
 
 > [!NOTE]
-> - **-v** is a required item, with the input source image path and frame information.
->   The cropping window should be within the height range of the source image, that is CropX0 + CropW <= Stride, CropY0 + CropH <= Height.
->   If cropping is not performed, then CropW = Width, CropH = Height, CropX0 = 0, and CropY0 = 0.
-> - **-n** indicates that the source image is processed for a specified number of times. If the parameter is -1, it will be executed in a loop all the time.
->   If you want to view the proc information of the IVPS, you need to set the number of processing times to a large value or cycle all the time.
->   How to view IVPS proc information: cat proc/ax_proc/ivps.
-> - The input parameter after **-r** is the number of overlayed REGIONs, currently the maximum is 4.
->   The overlay of REGIONs on IVPS PIPELINE is an asynchronous operation, which requires several frames before it is really overlayed on the input source image.
->   Therefore, if you want to verify the REGION function, you need to set the parameter after -n to be larger, the value should be greater than 3.2.
+> - **-v**는 필수 항목이며, 입력 소스 이미지 경로와 프레임 정보를 지정합니다.
+>   크롭 윈도우는 소스 이미지의 높이 범위 안에 있어야 합니다. 즉, CropX0 + CropW <= Stride, CropY0 + CropH <= Height여야 합니다.
+>   크롭을 하지 않으면 CropW = Width, CropH = Height, CropX0 = 0, CropY0 = 0입니다.
+> - **-n**은 소스 이미지를 지정한 횟수만큼 처리함을 나타냅니다. 파라미터가 -1이면 계속 반복 실행합니다.
+>   IVPS의 proc 정보를 보려면 처리 횟수를 큰 값으로 설정하거나 계속 반복 실행하도록 해야 합니다.
+>   IVPS proc 정보 확인 방법: cat proc/ax_proc/ivps.
+> - **-r** 뒤의 입력 파라미터는 오버레이할 REGION 수이며, 현재 최대 4개입니다.
+>   IVPS PIPELINE에서 REGION 오버레이는 비동기 동작이므로, 입력 소스 이미지에 실제로 오버레이되기까지 몇 프레임이 필요합니다.
+>   따라서 REGION 기능을 확인하려면 -n 뒤의 파라미터를 더 크게 설정해야 하며, 값은 3.2보다 커야 합니다.
 
-### Examples
+### 예제
 
-1. View help information
+1. 도움말 보기
    ``` bash
    axcl_sample_ivps -h
    ```
 
-2. Process source image (3840x2160 NV12 format) once
+2. 소스 이미지(3840x2160 NV12 형식)를 한 번 처리
    ``` bash
    axcl_sample_ivps -v /opt/data/ivps/3840x2160.nv12@3@3840x2160@0x0+0+0 -d 0 -n 1
    ```
 
-3. Process source image (800x480 RGB 888 format) with cropping(X0=128 Y0=50 W=400 H=200) for three times
+3. 소스 이미지(800x480 RGB 888 형식)를 크롭(X0=128 Y0=50 W=400 H=200)하여 세 번 처리
    ```bash
    axcl_sample_ivps -v /opt/data/ivps/800x480logo.rgb24@161@800x480@400x200+128+50 -d 0 -n 3
    ````
 
-4. Process the source image (3840x2160 NV12 format) for five times, with overlaying three REGIONs
+4. 소스 이미지(3840x2160 NV12 형식)에 REGION 3개를 오버레이하여 다섯 번 처리
    ```bash
    axcl_sample_ivps -v /opt/data/ivps/3840x2160.nv12@3@3840x2160@0x0+0+0 -d 0 -n 5 -r 3
    ````
 
 
-After running successfully, the following images will be generated in the same directory as the source image (/opt/data/ivps)， which can be opened and viewed through a tool.
+실행에 성공하면 소스 이미지와 같은 디렉터리(/opt/data/ivps)에 다음 이미지가 생성되며, 도구로 열어 확인할 수 있습니다.
 
    - FlipMirrorRotate_chn0_480x800.fmt_a1
    - OSD_chn0_3840x2160.fmt_3
@@ -129,8 +131,8 @@ After running successfully, the following images will be generated in the same d
 
 > [!NOTE]
 >
-> - fmt_3：Represents NV12 format; fmt_a1：Represents RGB 888 format (a1 indicates hexadecimal 0xa1)
-> - Execute Ctrl + C to exit.
-> - The sample code is only used for API demonstration.
->   In actual development, users need to configure parameters in combination with specific business scenarios.
-> - The maximum resolution of input image and output image is 8192x8192.
+> - fmt_3: NV12 형식, fmt_a1: RGB 888 형식(a1은 16진수 0xa1을 의미)
+> - 종료하려면 Ctrl + C를 누르세요.
+> - 샘플 코드는 API 데모 용도로만 사용합니다.
+>   실제 개발에서는 사용자가 구체적인 비즈니스 시나리오에 맞춰 파라미터를 설정해야 합니다.
+> - 입력 이미지와 출력 이미지의 최대 해상도는 8192x8192입니다.

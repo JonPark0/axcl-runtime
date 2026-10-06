@@ -1,13 +1,15 @@
-**English** | [中文](README_zh.md) | [한국어](README_ko.md)
+[English](README.md) | [中文](README_zh.md) | **한국어**
 
-### vdec sample
-1. Load .mp4 or .h264/h265 stream file
-2. Demux nalu by ffmpeg
-3. Send nalu to VDEC by frame
-4. Get decodec YUV
+> 영어 [원문](README.md)을 번역한 문서입니다. 내용이 다르면 원문을 기준으로 합니다.
+
+### vdec 샘플
+1. .mp4 또는 .h264/h265 스트림 파일을 로드합니다
+2. ffmpeg로 nalu를 디먹싱합니다
+3. nalu를 프레임 단위로 VDEC에 전송합니다
+4. 디코딩된 YUV를 가져옵니다
 
 
-### usage
+### 사용법
 ```bash
 usage: ./axcl_sample_vdec --url=string [options] ...
 options:
@@ -30,8 +32,8 @@ options:
 	  2: PP2, support scale down. range: [48x48, 1920x1080]
 ```
 
-### example
-decode 4 streams:
+### 예제
+스트림 4개 디코딩:
 ```bash
 $ ./axcl_sample_vdec -i bangkok_30952_1920x1080_30fps_gop60_4Mbps.mp4 -d 0 --count 4
 [INFO ][                            main][  43]: ============== V2.26.1 sample started Feb 13 2025 11:10:18 ==============

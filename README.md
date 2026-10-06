@@ -1,5 +1,7 @@
 # AXCL 新增工具链接入说明
 
+[English](README_en.md) | **中文** | [한국어](README_ko.md)
+
 本文档说明如何在 AXCL 现有 build 系统中接入新的 host 工具链。示例场景为 OpenWrt arm64 gcc。
 
 > **Tip**

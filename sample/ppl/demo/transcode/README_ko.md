@@ -1,15 +1,17 @@
-**English** | [中文](README_zh.md) | [한국어](README_ko.md)
+[English](README.md) | [中文](README_zh.md) | **한국어**
 
-### transcode sample (PPL: VDEC - IVPS - VENC)
-1. Load .mp4 or .h264/h265 stream file
-2. Demux nalu by ffmpeg
-3. Send nalu frame to VDEC
-4. VDEC send decoded nv12 to IVPS (if resize)
-5. IVPS send nv12 to VENC
-6. Send encoded nalu frame by VENC to host.
+> 영어 [원문](README.md)을 번역한 문서입니다. 내용이 다르면 원문을 기준으로 합니다.
+
+### transcode 샘플 (PPL: VDEC - IVPS - VENC)
+1. .mp4 또는 .h264/h265 스트림 파일을 로드합니다
+2. ffmpeg로 nalu를 디먹싱합니다
+3. nalu 프레임을 VDEC에 전송합니다
+4. 리사이즈하는 경우 VDEC이 디코딩된 nv12를 IVPS에 전송합니다
+5. IVPS가 nv12를 VENC에 전송합니다
+6. VENC가 인코딩한 nalu 프레임을 호스트로 전송합니다.
 
 
-### modules deployment
+### 모듈 배치
 ```bash
 |-----------------------------|
 |          sample             |
@@ -24,7 +26,7 @@
 |-----------------------------|
 ```
 
-### transcode ppl attributes
+### transcode ppl 속성
 ```bash
         attribute name                       R/W    attribute value type
  *  axcl.ppl.transcode.vdec.grp             [R  ]       int32_t                            allocated by ax_vdec.ko
@@ -45,7 +47,7 @@ NOTE:
  The value of "axcl.ppl.transcode.vdec.blk.cnt" depends on input stream.
  Usually set to dpb + 1
 ```
-### usage
+### 사용법
 ```bash
 usage: ./axcl_sample_transcode --url=string [options] ...
 options:
@@ -65,13 +67,13 @@ options:
 > [!NOTE]
 >
 > ./axcl_sample_transcode: error while loading shared libraries: libavcodec.so.58: cannot open shared object file: No such file or directory
-> if above error happens, please configure ffmpeg libraries into LD_LIBRARY_PATH.
-> As for x86_x64 OS:  *export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/axcl/ffmpeg*
+> 위 오류가 발생하면 ffmpeg 라이브러리를 LD_LIBRARY_PATH에 설정하세요.
+> x86_x64 OS의 경우:  *export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/axcl/ffmpeg*
 
-### example
+### 예제
 
 ```bash
-# transcode input 1080P@30fps 264 to 1080P@30fps 265, save into /tmp/axcl/transcode.dump.pidxxx file.
+# 입력 1080P@30fps 264를 1080P@30fps 265로 트랜스코딩하고, /tmp/axcl/transcode.dump.pidxxx 파일에 저장합니다.
 $ ./axcl_sample_transcode -i bangkok_30952_1920x1080_30fps_gop60_4Mbps.mp4 -d 0 --dump /tmp/axcl/transcode.265
 [INFO ][                            main][  66]: ============== V2.26.1 sample started Feb 13 2025 16:37:03 pid 798 ==============
 [WARN ][                            main][  91]: if enable dump, disable loop automatically
@@ -96,7 +98,7 @@ $ ./axcl_sample_transcode -i bangkok_30952_1920x1080_30fps_gop60_4Mbps.mp4 -d 0 
 
 ### launch_transcode.sh
 
-**launch_transcode.sh** supports to launch multi.(max. 16) axcl_sample_transcode and configure LD_LIBRARY_PATH automatically.
+**launch_transcode.sh**는 axcl_sample_transcode를 여러 개(최대 16개) 실행하고 LD_LIBRARY_PATH를 자동으로 설정할 수 있습니다.
 
 ```bash
 Usage:
@@ -105,5 +107,5 @@ launch_transcode.sh 16 -i bangkok_30952_1920x1080_30fps_gop60_4Mbps.mp4  -d 0 --
 
 > [!NOTE]
 >
-> The 1st argument must be the number of *axcl_sample_transcode* processes. range: [1, 16]
+> 첫 번째 인수는 반드시 *axcl_sample_transcode* 프로세스 수여야 합니다. 범위: [1, 16]
 

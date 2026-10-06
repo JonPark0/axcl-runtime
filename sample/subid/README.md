@@ -1,3 +1,5 @@
+**English** | [中文](README_zh.md) | [한국어](README_ko.md)
+
 ### Brief
 This guide explains how to modify the sub vendor ID or sub device ID of a PCIe EP device with NOR flash storage.
 

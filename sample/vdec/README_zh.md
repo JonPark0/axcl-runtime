@@ -1,13 +1,15 @@
-**English** | [中文](README_zh.md) | [한국어](README_ko.md)
+[English](README.md) | **中文** | [한국어](README_ko.md)
 
-### vdec sample
-1. Load .mp4 or .h264/h265 stream file
-2. Demux nalu by ffmpeg
-3. Send nalu to VDEC by frame
-4. Get decodec YUV
+> 本文译自英文[原文](README.md)，如有出入以原文为准。
+
+### vdec 示例
+1. 加载 .mp4 或 .h264/h265 码流文件
+2. 通过 ffmpeg 解封装出 nalu
+3. 按帧将 nalu 送入 VDEC
+4. 获取解码后的 YUV
 
 
-### usage
+### 用法
 ```bash
 usage: ./axcl_sample_vdec --url=string [options] ...
 options:
@@ -30,8 +32,8 @@ options:
 	  2: PP2, support scale down. range: [48x48, 1920x1080]
 ```
 
-### example
-decode 4 streams:
+### 示例
+解码 4 路码流：
 ```bash
 $ ./axcl_sample_vdec -i bangkok_30952_1920x1080_30fps_gop60_4Mbps.mp4 -d 0 --count 4
 [INFO ][                            main][  43]: ============== V2.26.1 sample started Feb 13 2025 11:10:18 ==============

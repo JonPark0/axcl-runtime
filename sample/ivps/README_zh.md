@@ -1,14 +1,16 @@
-**English** | [中文](README_zh.md) | [한국어](README_ko.md)
+[English](README.md) | **中文** | [한국어](README_ko.md)
 
-### Description
+> 本文译自英文[原文](README.md)，如有出入以原文为准。
 
-​	The IVPS(Image Video Process System) unit provided in the Axera SDK package is a video image processing subsystem that provides functions such as cropping, scaling, rotation, streaming, CSC, OSD, mosaic, quadrilateral, etc.
+### 说明
 
-​	This module is an example code of IVPS unit, which is convenient for users to quickly understand and master the use of IVPS related interfaces.
+​	Axera SDK 包中提供的 IVPS（图像视频处理系统）单元是一个视频图像处理子系统，提供裁剪、缩放、旋转、流式处理、CSC、OSD、马赛克、四边形等功能。
 
-​	`axcl_sample_ivps` bin is located in the directory of /opt/bin, and can be used for IVPS interface examples.
+​	本模块为 IVPS 单元的示例代码，便于用户快速理解并掌握 IVPS 相关接口的使用方法。
 
-### Usage
+​	`axcl_sample_ivps` 可执行文件位于 /opt/bin 目录下，可用于 IVPS 接口示例。
+
+### 用法
 ``` bash
 Usage: /opt/bin/axcl_sample_ivps
         -d             (required) : device index from 0 to connected device num - 1
@@ -81,40 +83,40 @@ Example1:
 ```
 
 > [!NOTE]
-> - **-v** is a required item, with the input source image path and frame information.
->   The cropping window should be within the height range of the source image, that is CropX0 + CropW <= Stride, CropY0 + CropH <= Height.
->   If cropping is not performed, then CropW = Width, CropH = Height, CropX0 = 0, and CropY0 = 0.
-> - **-n** indicates that the source image is processed for a specified number of times. If the parameter is -1, it will be executed in a loop all the time.
->   If you want to view the proc information of the IVPS, you need to set the number of processing times to a large value or cycle all the time.
->   How to view IVPS proc information: cat proc/ax_proc/ivps.
-> - The input parameter after **-r** is the number of overlayed REGIONs, currently the maximum is 4.
->   The overlay of REGIONs on IVPS PIPELINE is an asynchronous operation, which requires several frames before it is really overlayed on the input source image.
->   Therefore, if you want to verify the REGION function, you need to set the parameter after -n to be larger, the value should be greater than 3.2.
+> - **-v** 为必选项，后接输入源图像路径及帧信息。
+>   裁剪窗口应位于源图像的高度范围内，即 CropX0 + CropW <= Stride，CropY0 + CropH <= Height。
+>   若不进行裁剪，则 CropW = Width，CropH = Height，CropX0 = 0，CropY0 = 0。
+> - **-n** 表示对源图像处理指定的次数。若该参数为 -1，则一直循环执行。
+>   如需查看 IVPS 的 proc 信息，需要将处理次数设置为较大的值或一直循环执行。
+>   IVPS proc 信息的查看方法：cat proc/ax_proc/ivps。
+> - **-r** 后的输入参数为叠加的 REGION 数量，目前最大为 4。
+>   REGION 在 IVPS PIPELINE 上的叠加为异步操作，需要经过若干帧之后才会真正叠加到输入源图像上。
+>   因此，如需验证 REGION 功能，需要将 -n 后的参数设置得大一些，该值应大于 3.2。
 
-### Examples
+### 示例
 
-1. View help information
+1. 查看帮助信息
    ``` bash
    axcl_sample_ivps -h
    ```
 
-2. Process source image (3840x2160 NV12 format) once
+2. 对源图像（3840x2160 NV12 格式）处理一次
    ``` bash
    axcl_sample_ivps -v /opt/data/ivps/3840x2160.nv12@3@3840x2160@0x0+0+0 -d 0 -n 1
    ```
 
-3. Process source image (800x480 RGB 888 format) with cropping(X0=128 Y0=50 W=400 H=200) for three times
+3. 对源图像（800x480 RGB 888 格式）进行裁剪（X0=128 Y0=50 W=400 H=200）处理，共三次
    ```bash
    axcl_sample_ivps -v /opt/data/ivps/800x480logo.rgb24@161@800x480@400x200+128+50 -d 0 -n 3
    ````
 
-4. Process the source image (3840x2160 NV12 format) for five times, with overlaying three REGIONs
+4. 对源图像（3840x2160 NV12 格式）处理五次，并叠加三个 REGION
    ```bash
    axcl_sample_ivps -v /opt/data/ivps/3840x2160.nv12@3@3840x2160@0x0+0+0 -d 0 -n 5 -r 3
    ````
 
 
-After running successfully, the following images will be generated in the same directory as the source image (/opt/data/ivps)， which can be opened and viewed through a tool.
+运行成功后，将在源图像所在目录（/opt/data/ivps）下生成以下图像，可通过工具打开查看。
 
    - FlipMirrorRotate_chn0_480x800.fmt_a1
    - OSD_chn0_3840x2160.fmt_3
@@ -129,8 +131,8 @@ After running successfully, the following images will be generated in the same d
 
 > [!NOTE]
 >
-> - fmt_3：Represents NV12 format; fmt_a1：Represents RGB 888 format (a1 indicates hexadecimal 0xa1)
-> - Execute Ctrl + C to exit.
-> - The sample code is only used for API demonstration.
->   In actual development, users need to configure parameters in combination with specific business scenarios.
-> - The maximum resolution of input image and output image is 8192x8192.
+> - fmt_3：表示 NV12 格式；fmt_a1：表示 RGB 888 格式（a1 表示十六进制 0xa1）
+> - 按 Ctrl + C 退出。
+> - 示例代码仅用于 API 演示。
+>   实际开发中，用户需要结合具体业务场景配置参数。
+> - 输入图像和输出图像的最大分辨率为 8192x8192。

@@ -1,15 +1,17 @@
-**English** | [中文](README_zh.md) | [한국어](README_ko.md)
+[English](README.md) | **中文** | [한국어](README_ko.md)
 
-### transcode sample (PPL: VDEC - IVPS - VENC)
-1. Load .mp4 or .h264/h265 stream file
-2. Demux nalu by ffmpeg
-3. Send nalu frame to VDEC
-4. VDEC send decoded nv12 to IVPS (if resize)
-5. IVPS send nv12 to VENC
-6. Send encoded nalu frame by VENC to host.
+> 本文译自英文[原文](README.md)，如有出入以原文为准。
+
+### transcode 示例（PPL：VDEC - IVPS - VENC）
+1. 加载 .mp4 或 .h264/h265 码流文件
+2. 通过 ffmpeg 解封装出 nalu
+3. 将 nalu 帧送入 VDEC
+4. VDEC 将解码后的 nv12 发送给 IVPS（需要缩放时）
+5. IVPS 将 nv12 发送给 VENC
+6. 将 VENC 编码后的 nalu 帧发送到主机。
 
 
-### modules deployment
+### 模块部署
 ```bash
 |-----------------------------|
 |          sample             |
@@ -24,28 +26,28 @@
 |-----------------------------|
 ```
 
-### transcode ppl attributes
+### transcode ppl 属性
 ```bash
-        attribute name                       R/W    attribute value type
- *  axcl.ppl.transcode.vdec.grp             [R  ]       int32_t                            allocated by ax_vdec.ko
- *  axcl.ppl.transcode.ivps.grp             [R  ]       int32_t                            allocated by ax_ivps.ko
- *  axcl.ppl.transcode.venc.chn             [R  ]       int32_t                            allocated by ax_venc.ko
+        属性名称                             R/W    属性值类型
+ *  axcl.ppl.transcode.vdec.grp             [R  ]       int32_t                            由 ax_vdec.ko 分配
+ *  axcl.ppl.transcode.ivps.grp             [R  ]       int32_t                            由 ax_ivps.ko 分配
+ *  axcl.ppl.transcode.venc.chn             [R  ]       int32_t                            由 ax_venc.ko 分配
  *
- *  the following attributes take effect BEFORE the axcl_ppl_create function is called:
- *  axcl.ppl.transcode.vdec.blk.cnt         [R/W]       uint32_t          8                depend on stream DPB size and decode mode
- *  axcl.ppl.transcode.vdec.out.depth       [R/W]       uint32_t          4                out fifo depth
- *  axcl.ppl.transcode.ivps.in.depth        [R/W]       uint32_t          4                in fifo depth
- *  axcl.ppl.transcode.ivps.out.depth       [R  ]       uint32_t          0                out fifo depth
+ *  以下属性须在调用 axcl_ppl_create 函数之前设置才会生效：
+ *  axcl.ppl.transcode.vdec.blk.cnt         [R/W]       uint32_t          8                取决于码流的 DPB 大小和解码模式
+ *  axcl.ppl.transcode.vdec.out.depth       [R/W]       uint32_t          4                输出 fifo 深度
+ *  axcl.ppl.transcode.ivps.in.depth        [R/W]       uint32_t          4                输入 fifo 深度
+ *  axcl.ppl.transcode.ivps.out.depth       [R  ]       uint32_t          0                输出 fifo 深度
  *  axcl.ppl.transcode.ivps.blk.cnt         [R/W]       uint32_t          4
  *  axcl.ppl.transcode.ivps.engine          [R/W]       uint32_t   AX_IVPS_ENGINE_VPP      AX_IVPS_ENGINE_VPP|AX_IVPS_ENGINE_VGP|AX_IVPS_ENGINE_TDP
- *  axcl.ppl.transcode.venc.in.depth        [R/W]       uint32_t          4                in fifo depth
- *  axcl.ppl.transcode.venc.out.depth       [R/W]       uint32_t          4                out fifo depth
+ *  axcl.ppl.transcode.venc.in.depth        [R/W]       uint32_t          4                输入 fifo 深度
+ *  axcl.ppl.transcode.venc.out.depth       [R/W]       uint32_t          4                输出 fifo 深度
 
-NOTE:
- The value of "axcl.ppl.transcode.vdec.blk.cnt" depends on input stream.
- Usually set to dpb + 1
+注意：
+ "axcl.ppl.transcode.vdec.blk.cnt" 的值取决于输入码流。
+ 通常设置为 dpb + 1
 ```
-### usage
+### 用法
 ```bash
 usage: ./axcl_sample_transcode --url=string [options] ...
 options:
@@ -65,13 +67,13 @@ options:
 > [!NOTE]
 >
 > ./axcl_sample_transcode: error while loading shared libraries: libavcodec.so.58: cannot open shared object file: No such file or directory
-> if above error happens, please configure ffmpeg libraries into LD_LIBRARY_PATH.
-> As for x86_x64 OS:  *export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/axcl/ffmpeg*
+> 如果出现上述错误，请将 ffmpeg 库路径配置到 LD_LIBRARY_PATH 中。
+> 对于 x86_x64 系统：*export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/axcl/ffmpeg*
 
-### example
+### 示例
 
 ```bash
-# transcode input 1080P@30fps 264 to 1080P@30fps 265, save into /tmp/axcl/transcode.dump.pidxxx file.
+# 将输入的 1080P@30fps 264 转码为 1080P@30fps 265，保存到 /tmp/axcl/transcode.dump.pidxxx 文件。
 $ ./axcl_sample_transcode -i bangkok_30952_1920x1080_30fps_gop60_4Mbps.mp4 -d 0 --dump /tmp/axcl/transcode.265
 [INFO ][                            main][  66]: ============== V2.26.1 sample started Feb 13 2025 16:37:03 pid 798 ==============
 [WARN ][                            main][  91]: if enable dump, disable loop automatically
@@ -96,7 +98,7 @@ $ ./axcl_sample_transcode -i bangkok_30952_1920x1080_30fps_gop60_4Mbps.mp4 -d 0 
 
 ### launch_transcode.sh
 
-**launch_transcode.sh** supports to launch multi.(max. 16) axcl_sample_transcode and configure LD_LIBRARY_PATH automatically.
+**launch_transcode.sh** 支持启动多个（最多 16 个）axcl_sample_transcode，并自动配置 LD_LIBRARY_PATH。
 
 ```bash
 Usage:
@@ -105,5 +107,5 @@ launch_transcode.sh 16 -i bangkok_30952_1920x1080_30fps_gop60_4Mbps.mp4  -d 0 --
 
 > [!NOTE]
 >
-> The 1st argument must be the number of *axcl_sample_transcode* processes. range: [1, 16]
+> 第 1 个参数必须是 *axcl_sample_transcode* 进程的数量。范围：[1, 16]
 

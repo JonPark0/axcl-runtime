@@ -1,24 +1,26 @@
-**English** | [中文](README_zh.md) | [한국어](README_ko.md)
+[English](README.md) | [中文](README_zh.md) | **한국어**
 
-### Description
-This module is the sample code of the SYS module provided by the SDK package, which is convenient for customers to quickly understand and master the use of SYS related interfaces.
+> 영어 [원문](README.md)을 번역한 문서입니다. 내용이 다르면 원문을 기준으로 합니다.
 
-The code demonstrates the following functions:
-1. Non-cache type CMM memory application and release
-2. Cache type CMM memory application and release
-3. Common pool creation and use
-4. User pool creation and use
-5. Binding relationship creation and query.
+### 설명
+이 모듈은 SDK 패키지에서 제공하는 SYS 모듈의 샘플 코드로, 고객이 SYS 관련 인터페이스의 사용법을 빠르게 이해하고 익힐 수 있도록 도와줍니다.
+
+이 코드는 다음 기능을 보여 줍니다.
+1. 비캐시 타입 CMM 메모리 할당 및 해제
+2. 캐시 타입 CMM 메모리 할당 및 해제
+3. 공용 풀 생성 및 사용
+4. 사용자 풀 생성 및 사용
+5. 바인딩 관계 생성 및 조회.
 
 
-### Usage
+### 사용법
 ```bash
 options:
   -d, --device    device index from 0 to connected device num - 1 (unsigned int [=0])
   -?, --help      print this message
 ```
 
-### Example
+### 예제
 ```bash
 $ ./axcl_sample_sys -d 0
 [INFO ][                            main][  35]: json: ./axcl.json

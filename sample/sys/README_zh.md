@@ -1,24 +1,26 @@
-**English** | [中文](README_zh.md) | [한국어](README_ko.md)
+[English](README.md) | **中文** | [한국어](README_ko.md)
 
-### Description
-This module is the sample code of the SYS module provided by the SDK package, which is convenient for customers to quickly understand and master the use of SYS related interfaces.
+> 本文译自英文[原文](README.md)，如有出入以原文为准。
 
-The code demonstrates the following functions:
-1. Non-cache type CMM memory application and release
-2. Cache type CMM memory application and release
-3. Common pool creation and use
-4. User pool creation and use
-5. Binding relationship creation and query.
+### 说明
+本模块是 SDK 包提供的 SYS 模块示例代码，便于客户快速理解和掌握 SYS 相关接口的使用。
+
+代码演示了以下功能：
+1. 非 cache 类型 CMM 内存的申请与释放
+2. cache 类型 CMM 内存的申请与释放
+3. 公共缓存池的创建与使用
+4. 用户缓存池的创建与使用
+5. 绑定关系的创建与查询。
 
 
-### Usage
+### 用法
 ```bash
 options:
   -d, --device    device index from 0 to connected device num - 1 (unsigned int [=0])
   -?, --help      print this message
 ```
 
-### Example
+### 示例
 ```bash
 $ ./axcl_sample_sys -d 0
 [INFO ][                            main][  35]: json: ./axcl.json
